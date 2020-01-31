@@ -33,9 +33,24 @@ easy_admin:
               - { property: 'Nom' }
               - { property: 'Entreprise' }
               - { property: 'Poste' }
-              - { property: 'Avatar', type: 'image' }
+              - { property: 'Avatar', type: 'image', base_path: '%app.path.intervenant_images%' }
           show:
             max_results: 5
+            fields:
+              - id
+              - { property: 'Prenom' }
+              - { property: 'Nom' }
+              - { property: 'Entreprise' }
+              - { property: 'Poste' }
+              - { property: 'Avatar', type: 'image', base_path: '%app.path.intervenant_images%' }
+          form:
+            fields:
+              - { property: 'Prenom' }
+              - { property: 'Nom' }
+              - { property: 'Entreprise' }
+              - { property: 'Poste' }
+              - { property: 'imageFile', type: 'file' }
+
         Sponsors:
           class: App\Entity\Sponsors
           label: 'Sponsors'

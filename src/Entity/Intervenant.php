@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\IntervenantRepository")
+ * @Vich\Uploadable
  */
 class Intervenant
 {
@@ -40,8 +43,22 @@ class Intervenant
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $Avatar;
+
+    /**
+     * @Vich\UploadableField(mapping="intervenant_images", fileNameProperty="Avatar")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
+
 
     public function getId(): ?int
     {
@@ -94,6 +111,24 @@ class Intervenant
         $this->Poste = $Poste;
 
         return $this;
+    }
+
+    public function setImageFile(File $Avatar = null)
+    {
+        $this->imageFile = $Avatar;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($Avatar) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
     public function getAvatar(): ?string

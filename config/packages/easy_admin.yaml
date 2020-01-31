@@ -1,0 +1,30 @@
+easy_admin:
+    site_name: 'Les Demats Days'
+    list:
+        max_results: 30
+    entities:
+        # List the entity class name you want to manage
+        Programme:
+          class: App\Entity\Programme
+          label: 'Programme'
+          list:
+            title: "Trouvez ici tous notre %%entity_label%%"
+            max_results: 10
+        Intervenant:
+          class: App\Entity\Intervenant
+          label: 'Intervenant'
+          list:
+            title: "Trouvez ici tous nos %%entity_label%%"
+            max_results: 10
+        Sponsors:
+          class: App\Entity\Sponsors
+          label: 'Sponsors'
+          list:
+            title: "Trouvez ici tous nos %%entity_label%%"
+            max_results: 10
+        APropos:
+          class: App\Entity\APropos
+          label: 'A Propos'
+          list:
+            title: "%%entity_label%% de l'évenement"
+            max_results: 10

@@ -84,6 +84,20 @@ easy_admin:
               - { property: 'Fermeture' }
               - { property: 'Adresse' }
               - { property: 'APropos' }
-              - { property: 'Postere', type: 'image' }
+              - { property: 'Postere', type: 'image', base_path: '%app.path.postere_images%' }
           show:
             max_results: 5
+            fields:
+              - id
+              - { property: 'Ouverture' }
+              - { property: 'Fermeture' }
+              - { property: 'Adresse' }
+              - { property: 'APropos' }
+              - { property: 'Postere', type: 'image', base_path: '%app.path.postere_images%' }
+          form:
+            fields:
+              - { property: 'Ouverture' }
+              - { property: 'Fermeture' }
+              - { property: 'Adresse' }
+              - { property: 'APropos' }
+              - { property: 'imageFile', type: 'file' }

@@ -2,6 +2,8 @@ easy_admin:
     site_name: 'Les Demats Days'
     list:
         max_results: 30
+    show:
+        max_results: 20
     entities:
         # List the entity class name you want to manage
         Programme:
@@ -10,21 +12,63 @@ easy_admin:
           list:
             title: "Trouvez ici tous notre %%entity_label%%"
             max_results: 10
+            fields:
+              - id
+              - { property: 'Intitule' }
+              - { property: 'AnimerPar' }
+              - { property: 'Heure' }
+              - { property: 'Salle' }
+              - { property: 'Explicatif' }
+          show:
+            max_results: 5
         Intervenant:
           class: App\Entity\Intervenant
           label: 'Intervenant'
           list:
             title: "Trouvez ici tous nos %%entity_label%%"
             max_results: 10
+            fields:
+              - id
+              - { property: 'Prenom' }
+              - { property: 'Nom' }
+              - { property: 'Entreprise' }
+              - { property: 'Poste' }
+              - { property: 'Avatar', type: 'image' }
+          show:
+            max_results: 5
         Sponsors:
           class: App\Entity\Sponsors
           label: 'Sponsors'
           list:
             title: "Trouvez ici tous nos %%entity_label%%"
             max_results: 10
+            fields:
+              - id
+              - { property: 'NomSponsor' }
+              - { property: 'Logo', type: 'image', base_path: '%app.path.sponsor_images%' }
+          show:
+            max_results: 5
+            fields:
+              - id
+              - { property: 'NomSponsor' }
+              - { property: 'Logo', type: 'image', base_path: '%app.path.sponsor_images%' }
+          form:
+            fields:
+              - { property: 'NomSponsor' }
+              - { property: 'imageFile', type: 'file' }
+
         APropos:
           class: App\Entity\APropos
           label: 'A Propos'
           list:
             title: "%%entity_label%% de l'évenement"
             max_results: 10
+            fields:
+              - id
+              - { property: 'Ouverture' }
+              - { property: 'Fermeture' }
+              - { property: 'Adresse' }
+              - { property: 'APropos' }
+              - { property: 'Postere', type: 'image' }
+          show:
+            max_results: 5
